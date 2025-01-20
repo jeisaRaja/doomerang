@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cda40656i7rg8"]
+
+[ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
+[ext_resource type="Texture2D" uid="uid://shfblub6bkwy" path="res://arts/boomerang.png" id="2_ja7bu"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_c4ogy")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(66, -50)
+texture = ExtResource("2_ja7bu")
