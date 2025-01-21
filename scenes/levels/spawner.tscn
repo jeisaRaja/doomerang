@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cejx7glgsmwjx"]
+
+[ext_resource type="Script" path="res://scenes/levels/spawner.gd" id="1_jw6t6"]
+[ext_resource type="PackedScene" uid="uid://c24k7e4gyj732" path="res://scenes/zombie/zombie.tscn" id="2_vqdx5"]
+
+[node name="Spawner" type="Node2D" node_paths=PackedStringArray("start_point", "end_point")]
+script = ExtResource("1_jw6t6")
+zombie_scene = ExtResource("2_vqdx5")
+start_point = NodePath("Start")
+end_point = NodePath("End")
+
+[node name="Start" type="Marker2D" parent="."]
+position = Vector2(-216, -160)
+
+[node name="End" type="Marker2D" parent="."]
+position = Vector2(216, -160)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
