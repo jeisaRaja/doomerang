@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cda40656i7rg8"]
+[gd_scene load_steps=7 format=3 uid="uid://cda40656i7rg8"]
 
 [ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
 [ext_resource type="Texture2D" uid="uid://pwuawlesli04" path="res://arts/map.png" id="3_xacif"]
@@ -10,6 +10,9 @@ size = Vector2(480, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldqor"]
 size = Vector2(225, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgw31"]
+size = Vector2(480, 20)
+
 [node name="Level1" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -19,25 +22,33 @@ texture = ExtResource("3_xacif")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Spawner" parent="." instance=ExtResource("4_0qqcy")]
+
+[node name="PlayerWall" type="StaticBody2D" parent="."]
 collision_layer = 4
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerWall"]
 position = Vector2(0, -144)
 shape = SubResource("RectangleShape2D_110fo")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerWall"]
 position = Vector2(0, 91)
 shape = SubResource("RectangleShape2D_110fo")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayerWall"]
 position = Vector2(248, -32.5)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ldqor")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="PlayerWall"]
 position = Vector2(-248, -32.5)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ldqor")
 
-[node name="Spawner" parent="." instance=ExtResource("4_0qqcy")]
+[node name="ZombieWall" type="Area2D" parent="." groups=["wall"]]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieWall"]
+position = Vector2(0, 144)
+shape = SubResource("RectangleShape2D_qgw31")

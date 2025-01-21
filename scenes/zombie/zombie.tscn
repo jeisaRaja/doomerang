@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c24k7e4gyj732"]
+[gd_scene load_steps=15 format=3 uid="uid://c24k7e4gyj732"]
 
 [ext_resource type="Texture2D" uid="uid://dkg7dybv0gmwf" path="res://arts/zombie.png" id="1_hf7ji"]
 [ext_resource type="Script" path="res://scenes/zombie/zombie.gd" id="1_nxan1"]
+[ext_resource type="Script" path="res://scenes/zombie/hurtbox.gd" id="3_e36vf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u51ov"]
 radius = 4.0
@@ -71,10 +72,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rg1l"]
+radius = 8.0
+
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 8
 script = ExtResource("1_nxan1")
+speed = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
@@ -85,3 +90,10 @@ sprite_frames = SubResource("SpriteFrames_3p7pl")
 autoplay = "default"
 frame = 3
 frame_progress = 0.45155
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -6)
+script = ExtResource("3_e36vf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_6rg1l")
