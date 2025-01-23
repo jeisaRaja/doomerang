@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cda40656i7rg8"]
+[gd_scene load_steps=10 format=3 uid="uid://cda40656i7rg8"]
 
 [ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
 [ext_resource type="Texture2D" uid="uid://pwuawlesli04" path="res://arts/map.png" id="3_xacif"]
 [ext_resource type="PackedScene" uid="uid://cejx7glgsmwjx" path="res://scenes/levels/spawner.tscn" id="4_0qqcy"]
+[ext_resource type="Script" path="res://scenes/levels/zombie_wall.gd" id="4_vxxtd"]
+[ext_resource type="PackedScene" uid="uid://bkp1y3rtkux4o" path="res://scenes/player/trail.tscn" id="5_mr5xq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_110fo"]
 size = Vector2(480, 20)
@@ -13,12 +15,17 @@ size = Vector2(225, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgw31"]
 size = Vector2(480, 20)
 
+[sub_resource type="Curve" id="Curve_e8mis"]
+_data = [Vector2(0.0147679, 0.56044), 0.0, 0.0, 0, 0, Vector2(1, 0.217582), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Level1" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("3_xacif")
 
 [node name="Player" parent="." instance=ExtResource("1_c4ogy")]
+z_index = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -48,7 +55,13 @@ shape = SubResource("RectangleShape2D_ldqor")
 [node name="ZombieWall" type="Area2D" parent="." groups=["wall"]]
 collision_layer = 8
 collision_mask = 2
+script = ExtResource("4_vxxtd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieWall"]
 position = Vector2(0, 144)
 shape = SubResource("RectangleShape2D_qgw31")
+
+[node name="Trail" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_mr5xq")]
+width_curve = SubResource("Curve_e8mis")
+player = NodePath("../Player")
+MAX_LENGTH = 10

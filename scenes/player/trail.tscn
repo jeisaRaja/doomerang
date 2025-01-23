@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkp1y3rtkux4o"]
+
+[ext_resource type="Script" path="res://scenes/player/trail.gd" id="1_0dkqe"]
+
+[sub_resource type="Gradient" id="Gradient_wwieq"]
+colors = PackedColorArray(0.273523, 0.174048, 0.0531369, 1, 0.798791, 0.798791, 0.798791, 1)
+
+[node name="Trail" type="Line2D"]
+width = 5.0
+gradient = SubResource("Gradient_wwieq")
+script = ExtResource("1_0dkqe")
