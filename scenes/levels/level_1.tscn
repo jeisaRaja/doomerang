@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cda40656i7rg8"]
+[gd_scene load_steps=11 format=3 uid="uid://cda40656i7rg8"]
 
 [ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
 [ext_resource type="Texture2D" uid="uid://pwuawlesli04" path="res://arts/map.png" id="3_xacif"]
 [ext_resource type="PackedScene" uid="uid://cejx7glgsmwjx" path="res://scenes/levels/spawner.tscn" id="4_0qqcy"]
 [ext_resource type="Script" path="res://scenes/levels/zombie_wall.gd" id="4_vxxtd"]
 [ext_resource type="PackedScene" uid="uid://bkp1y3rtkux4o" path="res://scenes/player/trail.tscn" id="5_mr5xq"]
+[ext_resource type="PackedScene" uid="uid://dprgsn5gr1s41" path="res://scenes/objects/thrower.tscn" id="6_x6kyi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_110fo"]
 size = Vector2(480, 20)
@@ -39,7 +40,7 @@ position = Vector2(0, -144)
 shape = SubResource("RectangleShape2D_110fo")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerWall"]
-position = Vector2(0, 91)
+position = Vector2(0, 128)
 shape = SubResource("RectangleShape2D_110fo")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayerWall"]
@@ -65,3 +66,6 @@ shape = SubResource("RectangleShape2D_qgw31")
 width_curve = SubResource("Curve_e8mis")
 player = NodePath("../Player")
 MAX_LENGTH = 10
+
+[node name="Thrower" parent="." instance=ExtResource("6_x6kyi")]
+position = Vector2(0, 104)

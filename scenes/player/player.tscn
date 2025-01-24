@@ -47,9 +47,11 @@ _data = {
 "throw": SubResource("Animation_mdek3")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement", "player_input")]
 collision_mask = 5
 script = ExtResource("1_7um3g")
+movement = NodePath("Movement")
+player_input = NodePath("PlayerInput")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qx80u")
@@ -62,12 +64,13 @@ libraries = {
 "": SubResource("AnimationLibrary_safjc")
 }
 
-[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("input", "actor")]
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("input", "player")]
 script = ExtResource("3_ai2gd")
 speed = 100
 turn_speed = 5.0
 input = NodePath("../PlayerInput")
-actor = NodePath("..")
+player = NodePath("..")
 
-[node name="PlayerInput" type="Node" parent="."]
+[node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("4_80boh")
+player = NodePath("..")

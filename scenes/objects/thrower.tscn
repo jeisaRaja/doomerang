@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dprgsn5gr1s41"]
+
+[ext_resource type="Script" path="res://scenes/objects/thrower.gd" id="1_fqwa3"]
+[ext_resource type="Texture2D" uid="uid://4rmp5hqlb37i" path="res://icon.svg" id="1_gluiq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0cme7"]
+
+[node name="Thrower" type="Area2D"]
+script = ExtResource("1_fqwa3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.135, 0.135)
+texture = ExtResource("1_gluiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0cme7")
