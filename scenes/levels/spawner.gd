@@ -14,7 +14,7 @@ func _on_timer_timeout():
 	var zombie = zombie_scene.instantiate() as Node2D
 	zombie.global_position = Vector2(
 		randf_range(start_point.global_position.x, end_point.global_position.x),
-		start_point.global_position.y
+		start_point.position.y
 	)
 	add_child(zombie)
 	move_child(zombie, 0)
