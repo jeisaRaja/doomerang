@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var actor = $".."
+@export var sprite: Node2D
 
 
 func _ready():
@@ -15,4 +16,8 @@ func _on_area_entered(area: Area2D):
 
 func _on_body_entered(body: Node2D):
 	if body is Player:
+		var shader_mat = sprite.material as ShaderMaterial
+		shader_mat.set_shader_parameter("Enable", true)
+		await get_tree().create_timer(0.1).timeout
+		shader_mat.set_shader_parameter("Enable", false)
 		actor.queue_free()

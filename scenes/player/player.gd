@@ -15,6 +15,8 @@ func _ready():
 
 
 func _physics_process(_delta):
+	if player_input.is_dashing:
+		movement.dash()
 	if velocity != Vector2.ZERO:
 		if not anim.is_playing():
 			anim.play("throw")

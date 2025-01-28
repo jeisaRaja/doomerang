@@ -55,7 +55,3 @@ there are type of zombies,
 
 Here's a couple of player mechanic I can think of:
 - dash, this is for more efficient and to counter stunner zombie, also can be used to bounce off wall
-
-if can add more, what do you think could make the game more fun? i want the game to feel fast paced and addicting, not just
-play one time cus it's a game for gamejam, i want to make it even if you die and fail, you want to play again
-sort of like flappy bird before, its a very simple game but somehow people play it again and again

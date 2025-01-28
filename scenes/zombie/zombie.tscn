@@ -1,12 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://c24k7e4gyj732"]
+[gd_scene load_steps=17 format=3 uid="uid://c24k7e4gyj732"]
 
 [ext_resource type="Texture2D" uid="uid://dkg7dybv0gmwf" path="res://arts/zombie.png" id="1_hf7ji"]
 [ext_resource type="Script" path="res://scenes/zombie/zombie.gd" id="1_nxan1"]
+[ext_resource type="Shader" uid="uid://b1bw1vubla8ms" path="res://scenes/zombie/zombie.tres" id="2_4gbnw"]
 [ext_resource type="Script" path="res://scenes/zombie/hurtbox.gd" id="3_e36vf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u51ov"]
 radius = 4.0
 height = 18.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eauwu"]
+resource_local_to_scene = true
+shader = ExtResource("2_4gbnw")
+shader_parameter/Enable = false
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl6hy"]
 atlas = ExtResource("1_hf7ji")
@@ -86,14 +93,16 @@ position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_u51ov")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_eauwu")
 sprite_frames = SubResource("SpriteFrames_3p7pl")
 autoplay = "default"
 frame = 3
 frame_progress = 0.45155
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
 position = Vector2(0, -6)
 script = ExtResource("3_e36vf")
+sprite = NodePath("../AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_6rg1l")

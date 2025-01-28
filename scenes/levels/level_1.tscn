@@ -35,6 +35,8 @@ limit_left = 0
 limit_top = -560
 limit_right = 320
 limit_bottom = 145
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
 [node name="Spawner" parent="." instance=ExtResource("4_0qqcy")]
 position = Vector2(0, -400)
