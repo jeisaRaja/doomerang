@@ -2,6 +2,7 @@ class_name Zombie
 extends CharacterBody2D
 
 @export var speed: int = 30
+@export var spawn_interval: int = 1
 
 
 func _physics_process(_delta):

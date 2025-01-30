@@ -5,9 +5,7 @@
 [ext_resource type="Shader" uid="uid://b1bw1vubla8ms" path="res://scenes/zombie/zombie.tres" id="2_4gbnw"]
 [ext_resource type="Script" path="res://scenes/zombie/hurtbox.gd" id="3_e36vf"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u51ov"]
-radius = 4.0
-height = 18.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_l0kh7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eauwu"]
 resource_local_to_scene = true
@@ -15,35 +13,35 @@ shader = ExtResource("2_4gbnw")
 shader_parameter/Enable = false
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bl6hy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe3ij"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ywvuy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_utw7a"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t1226"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_88uoy"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c7gf1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4io4v"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wyi0j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifbx2"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_37n5a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sruvk"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyoas"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx5yf"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h04cv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_333yf"]
 atlas = ExtResource("1_hf7ji")
 region = Rect2(224, 0, 32, 32)
 
@@ -51,36 +49,36 @@ region = Rect2(224, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bl6hy")
+"texture": SubResource("AtlasTexture_fe3ij")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ywvuy")
+"texture": SubResource("AtlasTexture_utw7a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t1226")
+"texture": SubResource("AtlasTexture_88uoy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c7gf1")
+"texture": SubResource("AtlasTexture_4io4v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wyi0j")
+"texture": SubResource("AtlasTexture_ifbx2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_37n5a")
+"texture": SubResource("AtlasTexture_sruvk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iyoas")
+"texture": SubResource("AtlasTexture_hx5yf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h04cv")
+"texture": SubResource("AtlasTexture_333yf")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6rg1l"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fyxqu"]
+height = 26.0
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -90,7 +88,7 @@ speed = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_u51ov")
+shape = SubResource("CircleShape2D_l0kh7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_eauwu")
@@ -105,4 +103,5 @@ script = ExtResource("3_e36vf")
 sprite = NodePath("../AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("CircleShape2D_6rg1l")
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_fyxqu")

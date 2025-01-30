@@ -1,27 +1,32 @@
-[gd_scene load_steps=12 format=3 uid="uid://cda40656i7rg8"]
+[gd_scene load_steps=16 format=3 uid="uid://cda40656i7rg8"]
 
 [ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
 [ext_resource type="Texture2D" uid="uid://pwuawlesli04" path="res://arts/map.png" id="3_xacif"]
 [ext_resource type="PackedScene" uid="uid://cejx7glgsmwjx" path="res://scenes/levels/spawner.tscn" id="4_0qqcy"]
+[ext_resource type="Script" path="res://custom_resources/spawn_info.gd" id="4_361uf"]
 [ext_resource type="Script" path="res://scenes/levels/zombie_wall.gd" id="4_vxxtd"]
+[ext_resource type="Resource" uid="uid://jsdd12l1okxl" path="res://scenes/zombie/runner_zombie_spawn_info.tres" id="5_4o4xl"]
 [ext_resource type="PackedScene" uid="uid://bkp1y3rtkux4o" path="res://scenes/player/trail.tscn" id="5_mr5xq"]
+[ext_resource type="Resource" uid="uid://gm866344vvp6" path="res://scenes/zombie/zombie_spawn_info.tres" id="6_neojg"]
 [ext_resource type="PackedScene" uid="uid://dprgsn5gr1s41" path="res://scenes/objects/thrower.tscn" id="6_x6kyi"]
 [ext_resource type="Script" path="res://scenes/ui/time_limit.gd" id="7_j40aq"]
+[ext_resource type="Script" path="res://scenes/ui/time.gd" id="11_dikny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_110fo"]
 size = Vector2(640, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldqor"]
-size = Vector2(288.5, 20)
+size = Vector2(352, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgw31"]
-size = Vector2(480, 20)
+size = Vector2(632, 20)
 
 [sub_resource type="Curve" id="Curve_e8mis"]
 _data = [Vector2(0.0147679, 0.56044), 0.0, 0.0, 0, 0, Vector2(1, 0.217582), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Level1" type="Node2D"]
+position = Vector2(320, 568)
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(0, -210)
@@ -29,23 +34,33 @@ texture = ExtResource("3_xacif")
 
 [node name="Player" parent="." instance=ExtResource("1_c4ogy")]
 z_index = 1
+position = Vector2(0, 104)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = 0
-limit_top = -560
-limit_right = 320
-limit_bottom = 145
+limit_left = 100
+limit_top = 360
+limit_right = 640
+limit_bottom = 720
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="Spawner" parent="." instance=ExtResource("4_0qqcy")]
-position = Vector2(0, -400)
+[node name="Spawner" parent="." node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("4_0qqcy")]
+position = Vector2(0, -48)
+spawn_infos = Array[ExtResource("4_361uf")]([ExtResource("5_4o4xl"), ExtResource("6_neojg")])
+start_point = NodePath("Start")
+end_point = NodePath("End")
 
-[node name="PlayerWall" type="StaticBody2D" parent="."]
+[node name="Start" type="Marker2D" parent="Spawner"]
+position = Vector2(-272, -192)
+
+[node name="End" type="Marker2D" parent="Spawner"]
+position = Vector2(272, -192)
+
+[node name="PlayerWall" type="StaticBody2D" parent="." groups=["wall"]]
 collision_layer = 4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerWall"]
-position = Vector2(0, -570)
+position = Vector2(0, -220)
 shape = SubResource("RectangleShape2D_110fo")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerWall"]
@@ -53,12 +68,12 @@ position = Vector2(0, 128)
 shape = SubResource("RectangleShape2D_110fo")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayerWall"]
-position = Vector2(328, -0.25)
+position = Vector2(328, -48)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ldqor")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="PlayerWall"]
-position = Vector2(-328, 0)
+position = Vector2(-328, -40)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ldqor")
 
@@ -68,7 +83,7 @@ collision_mask = 2
 script = ExtResource("4_vxxtd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieWall"]
-position = Vector2(0, 144)
+position = Vector2(4, 128)
 shape = SubResource("RectangleShape2D_qgw31")
 
 [node name="Trail" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_mr5xq")]
@@ -77,18 +92,48 @@ player = NodePath("../Player")
 MAX_LENGTH = 10
 
 [node name="Thrower" parent="." instance=ExtResource("6_x6kyi")]
+unique_name_in_owner = true
 position = Vector2(0, 104)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TimeLimit" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 168.0
-offset_top = 40.0
-offset_right = 172.0
-offset_bottom = 67.0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 52.0
+offset_bottom = 59.0
 script = ExtResource("7_j40aq")
 
 [node name="Timer" type="Timer" parent="CanvasLayer/TimeLimit"]
 wait_time = 20.0
 one_shot = true
 autostart = true
+
+[node name="Time" type="Panel" parent="CanvasLayer"]
+offset_right = 96.0
+offset_bottom = 24.0
+script = ExtResource("11_dikny")
+
+[node name="Minutes" type="Label" parent="CanvasLayer/Time"]
+layout_mode = 0
+offset_left = -8.0
+offset_right = 32.0
+offset_bottom = 23.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="CanvasLayer/Time"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 60.0
+offset_bottom = 23.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Msecs" type="Label" parent="CanvasLayer/Time"]
+layout_mode = 0
+offset_left = 49.0
+offset_right = 89.0
+offset_bottom = 23.0
+text = "00:"
+horizontal_alignment = 2

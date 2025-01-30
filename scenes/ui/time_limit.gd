@@ -11,12 +11,16 @@ func _ready():
 
 func _process(_delta):
 	value = timer.time_left
+	if value <= 0:
+		Events.player_fell.emit()
 
 
 func _on_player_returned():
-	timer.stop()
 	value = max_value
+	timer.stop()
+	set_process(false)
 
 
 func _on_player_thrown():
 	timer.start()
+	set_process(true)

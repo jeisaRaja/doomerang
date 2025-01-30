@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpawnInfo" load_steps=3 format=3 uid="uid://gm866344vvp6"]
+
+[ext_resource type="Script" path="res://custom_resources/spawn_info.gd" id="1_g47ru"]
+[ext_resource type="PackedScene" uid="uid://c24k7e4gyj732" path="res://scenes/zombie/zombie.tscn" id="2_ed0kn"]
+
+[resource]
+script = ExtResource("1_g47ru")
+spawn_interval = 4
+start_spawn_time = 0
+end_spawn_time = 1000
+zombie_scene = ExtResource("2_ed0kn")
+amount = 2
