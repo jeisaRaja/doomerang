@@ -55,3 +55,10 @@ there are type of zombies,
 
 Here's a couple of player mechanic I can think of:
 - dash, this is for more efficient and to counter stunner zombie, also can be used to bounce off wall
+
+
+## Todo
+- [ ] Bomber zombie
+- [ ] Stunner zombie
+- [ ] Player soul
+- [ ] Base integrity

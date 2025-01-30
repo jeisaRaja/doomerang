@@ -13,6 +13,7 @@ func _process(_delta):
 	value = timer.time_left
 	if value <= 0:
 		Events.player_fell.emit()
+		set_process(false)
 
 
 func _on_player_returned():

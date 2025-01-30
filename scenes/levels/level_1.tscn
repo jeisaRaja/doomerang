@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cda40656i7rg8"]
+[gd_scene load_steps=17 format=3 uid="uid://cda40656i7rg8"]
 
 [ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
 [ext_resource type="Texture2D" uid="uid://pwuawlesli04" path="res://arts/map.png" id="3_xacif"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dprgsn5gr1s41" path="res://scenes/objects/thrower.tscn" id="6_x6kyi"]
 [ext_resource type="Script" path="res://scenes/ui/time_limit.gd" id="7_j40aq"]
 [ext_resource type="Script" path="res://scenes/ui/time.gd" id="11_dikny"]
+[ext_resource type="PackedScene" uid="uid://cfs2qsko2nn06" path="res://scenes/ui/player_soul.tscn" id="12_c6oiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_110fo"]
 size = Vector2(640, 20)
@@ -105,7 +106,7 @@ offset_bottom = 59.0
 script = ExtResource("7_j40aq")
 
 [node name="Timer" type="Timer" parent="CanvasLayer/TimeLimit"]
-wait_time = 20.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 
@@ -137,3 +138,11 @@ offset_right = 89.0
 offset_bottom = 23.0
 text = "00:"
 horizontal_alignment = 2
+
+[node name="PlayerSoul" parent="CanvasLayer" instance=ExtResource("12_c6oiq")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_right = 0.0
+grow_horizontal = 0

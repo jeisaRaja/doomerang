@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/levels/spawner.gd" id="1_jw6t6"]
 
-[node name="Spawner" type="Node2D" node_paths=PackedStringArray("start_point", "end_point")]
+[node name="Spawner" type="Node2D"]
 script = ExtResource("1_jw6t6")
-start_point = NodePath("")
-end_point = NodePath("")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

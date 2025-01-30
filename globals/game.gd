@@ -10,7 +10,6 @@ func set_player_soul(value):
 
 
 func take_soul():
+	player_soul = clampi(player_soul - 1, 0, player_soul)
 	if player_soul == 0:
 		Events.player_died.emit()
-		return
-	player_soul = clampi(player_soul, 0, player_soul - 1)

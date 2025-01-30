@@ -19,6 +19,7 @@ func _on_player_fell():
 	state = IDLE
 	await get_tree().create_timer(1).timeout
 	global_position = %Thrower.global_position
+	Game.take_soul()
 
 
 func _physics_process(_delta):

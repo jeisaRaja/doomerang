@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfs2qsko2nn06"]
+
+[ext_resource type="Script" path="res://scenes/ui/player_soul.gd" id="1_p85jy"]
+[ext_resource type="Texture2D" uid="uid://c3bofn7a4renb" path="res://arts/heart.png" id="2_1xdb2"]
+
+[node name="PlayerSoul" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 184.0
+offset_bottom = 40.0
+script = ExtResource("1_p85jy")
+soul_sprite = ExtResource("2_1xdb2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = -88.0
+offset_bottom = 16.0
+alignment = 2
