@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cda40656i7rg8"]
+[gd_scene load_steps=21 format=3 uid="uid://cda40656i7rg8"]
 
 [ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
 [ext_resource type="Texture2D" uid="uid://pwuawlesli04" path="res://arts/map.png" id="3_xacif"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" path="res://scenes/ui/time_limit.gd" id="7_j40aq"]
 [ext_resource type="Script" path="res://scenes/ui/time.gd" id="11_dikny"]
 [ext_resource type="PackedScene" uid="uid://cfs2qsko2nn06" path="res://scenes/ui/player_soul.tscn" id="12_c6oiq"]
+[ext_resource type="Texture2D" uid="uid://dmx475oghmrsh" path="res://arts/integrity_bg.png" id="13_pn2qq"]
+[ext_resource type="Texture2D" uid="uid://p1ws3si0vq80" path="res://arts/integrity_border.png" id="14_v0kok"]
+[ext_resource type="Texture2D" uid="uid://jtg8wen81hl" path="res://arts/integrity_value.png" id="15_ahjej"]
+[ext_resource type="Script" path="res://scenes/ui/fortress_integrity.gd" id="16_cjlk2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_110fo"]
 size = Vector2(640, 20)
@@ -46,6 +50,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("4_0qqcy")]
+y_sort_enabled = true
 position = Vector2(0, -48)
 spawn_infos = Array[ExtResource("4_361uf")]([ExtResource("5_4o4xl"), ExtResource("6_neojg")])
 start_point = NodePath("Start")
@@ -106,7 +111,7 @@ offset_bottom = 59.0
 script = ExtResource("7_j40aq")
 
 [node name="Timer" type="Timer" parent="CanvasLayer/TimeLimit"]
-wait_time = 5.0
+wait_time = 25.0
 one_shot = true
 autostart = true
 
@@ -146,3 +151,21 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_right = 0.0
 grow_horizontal = 0
+
+[node name="FortressIntegrity" type="TextureProgressBar" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -8.0
+offset_right = 320.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+texture_under = ExtResource("13_pn2qq")
+texture_over = ExtResource("14_v0kok")
+texture_progress = ExtResource("15_ahjej")
+script = ExtResource("16_cjlk2")

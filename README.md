@@ -60,5 +60,6 @@ Here's a couple of player mechanic I can think of:
 ## Todo
 - [ ] Bomber zombie
 - [ ] Stunner zombie
-- [ ] Player soul
-- [ ] Base integrity
+- [x] Player soul
+- [x] Base integrity
+
