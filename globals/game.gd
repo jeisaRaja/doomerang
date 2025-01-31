@@ -1,5 +1,9 @@
 extends Node
 
+@export var main_scene: PackedScene
+@export var menu: PackedScene
+@export var end_screen_scene: PackedScene
+
 var player_soul: int = 3:
 	set = set_player_soul
 

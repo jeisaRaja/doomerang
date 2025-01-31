@@ -99,6 +99,8 @@ frame_progress = 0.45155
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
 position = Vector2(0, -6)
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("3_e36vf")
 sprite = NodePath("../AnimatedSprite2D")
 

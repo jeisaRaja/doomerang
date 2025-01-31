@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsikv1exn3gyy"]
+
+[ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_io0no"]
+[ext_resource type="Texture2D" uid="uid://d4ff73g1sv7pm" path="res://arts/you_lost_screen.png" id="1_texqk"]
+
+[node name="EndScreen" type="CanvasLayer"]
+script = ExtResource("1_io0no")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_texqk")
+expand_mode = 3
+
+[node name="Retry" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 69.0
+offset_right = 4.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"

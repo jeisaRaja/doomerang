@@ -58,8 +58,12 @@ Here's a couple of player mechanic I can think of:
 
 
 ## Todo
-- [ ] Bomber zombie
+- [x] Bomber zombie
 - [ ] Stunner zombie
 - [x] Player soul
 - [x] Base integrity
+- [ ] Losing Screen
+- [ ] Main Menu
+- [ ] Explosion Effect
+
 

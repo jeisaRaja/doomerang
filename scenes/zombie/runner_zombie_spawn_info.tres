@@ -7,6 +7,8 @@
 script = ExtResource("1_fovfg")
 spawn_interval = 20
 start_spawn_time = 20
-end_spawn_time = 1000
+end_spawn_time = 3600
 zombie_scene = ExtResource("2_c4fy4")
 amount = 1
+spawn_interval_modifier = 35
+spawn_amount_modifier = 41

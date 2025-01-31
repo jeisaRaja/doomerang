@@ -105,9 +105,9 @@ position = Vector2(0, 104)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TimeLimit" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 48.0
+offset_left = 544.0
 offset_top = 32.0
-offset_right = 52.0
+offset_right = 600.0
 offset_bottom = 59.0
 script = ExtResource("7_j40aq")
 

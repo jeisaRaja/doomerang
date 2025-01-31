@@ -5,8 +5,10 @@
 
 [resource]
 script = ExtResource("1_kafpq")
-spawn_interval = 10
+spawn_interval = 30
 start_spawn_time = 10
-end_spawn_time = 1000
+end_spawn_time = 3600
 zombie_scene = ExtResource("2_2x0sh")
 amount = 1
+spawn_interval_modifier = 33
+spawn_amount_modifier = 37

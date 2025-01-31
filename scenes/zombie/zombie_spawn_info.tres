@@ -5,8 +5,10 @@
 
 [resource]
 script = ExtResource("1_g47ru")
-spawn_interval = 4
+spawn_interval = 3
 start_spawn_time = 0
-end_spawn_time = 1000
+end_spawn_time = 3600
 zombie_scene = ExtResource("2_ed0kn")
 amount = 2
+spawn_interval_modifier = 36
+spawn_amount_modifier = 49

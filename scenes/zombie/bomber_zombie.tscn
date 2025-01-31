@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c28e2qn862flh"]
+[gd_scene load_steps=25 format=3 uid="uid://c28e2qn862flh"]
 
 [ext_resource type="Script" path="res://scenes/zombie/bomber_zombie.gd" id="1_dp5w2"]
 [ext_resource type="Shader" uid="uid://b1bw1vubla8ms" path="res://scenes/zombie/zombie.tres" id="1_utnua"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/zombie/hurtbox.gd" id="3_3js0u"]
 [ext_resource type="Texture2D" uid="uid://bntkfqhjqb03v" path="res://arts/circle_light_texture.png" id="5_8oiey"]
 [ext_resource type="Script" path="res://scenes/zombie/explosion.gd" id="6_0lxr0"]
+[ext_resource type="PackedScene" uid="uid://cxyxakmy1dwt1" path="res://scenes/zombie/explosion_particle.tscn" id="7_10vbq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lhgag"]
 
@@ -82,6 +83,33 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kbe41"]
 height = 26.0
 
+[sub_resource type="Animation" id="Animation_jceca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
 [sub_resource type="Animation" id="Animation_uqvik"]
 resource_name = "bomb"
 loop_mode = 1
@@ -97,33 +125,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:texture_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.2]
-}
-
-[sub_resource type="Animation" id="Animation_jceca"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -181,7 +182,7 @@ radius = 66.0076
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_dp5w2")
-speed = 15
+speed = 25
 damage = 30.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -197,6 +198,9 @@ frame_progress = 0.158722
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
 position = Vector2(0, -6)
+collision_layer = 2
+collision_mask = 3
+priority = 1
 script = ExtResource("3_3js0u")
 sprite = NodePath("../AnimatedSprite2D")
 
@@ -218,8 +222,12 @@ libraries = {
 }
 
 [node name="Explosion" type="Area2D" parent="." node_paths=PackedStringArray("anim")]
+collision_layer = 2
+collision_mask = 3
+priority = 1
 script = ExtResource("6_0lxr0")
 anim = NodePath("../AnimationPlayer")
+explode_particle = ExtResource("7_10vbq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
 shape = SubResource("CircleShape2D_38bj7")

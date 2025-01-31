@@ -6,4 +6,4 @@ func _ready():
 
 
 func _on_player_lost():
-	print("player lost")
+	get_tree().change_scene_to_packed(Game.end_screen_scene)
