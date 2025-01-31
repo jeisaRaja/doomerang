@@ -15,6 +15,10 @@ func _ready():
 	state = FLY
 
 
+func hit():
+	print("you got hit")
+
+
 func _on_player_fell():
 	state = IDLE
 	await get_tree().create_timer(1).timeout

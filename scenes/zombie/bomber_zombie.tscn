@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c28e2qn862flh"]
+[gd_scene load_steps=24 format=3 uid="uid://c28e2qn862flh"]
 
 [ext_resource type="Script" path="res://scenes/zombie/bomber_zombie.gd" id="1_dp5w2"]
 [ext_resource type="Shader" uid="uid://b1bw1vubla8ms" path="res://scenes/zombie/zombie.tres" id="1_utnua"]
 [ext_resource type="Texture2D" uid="uid://dm2ml5tecvbab" path="res://arts/bomber_zombie.png" id="2_cp244"]
 [ext_resource type="Script" path="res://scenes/zombie/hurtbox.gd" id="3_3js0u"]
 [ext_resource type="Texture2D" uid="uid://bntkfqhjqb03v" path="res://arts/circle_light_texture.png" id="5_8oiey"]
+[ext_resource type="Script" path="res://scenes/zombie/explosion.gd" id="6_0lxr0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lhgag"]
 
@@ -81,7 +82,104 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kbe41"]
 height = 26.0
 
+[sub_resource type="Animation" id="Animation_uqvik"]
+resource_name = "bomb"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
+[sub_resource type="Animation" id="Animation_jceca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
+[sub_resource type="Animation" id="Animation_jkmpv"]
+resource_name = "explode"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0, 3.0, 1.0, 3.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r003k"]
+_data = {
+"RESET": SubResource("Animation_jceca"),
+"bomb": SubResource("Animation_uqvik"),
+"explode": SubResource("Animation_jkmpv")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_38bj7"]
+radius = 66.0076
+
 [node name="BomberZombie" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 8
 script = ExtResource("1_dp5w2")
 speed = 15
 damage = 30.0
@@ -94,6 +192,8 @@ shape = SubResource("CircleShape2D_lhgag")
 material = SubResource("ShaderMaterial_52irq")
 sprite_frames = SubResource("SpriteFrames_m1dnb")
 autoplay = "default"
+frame = 2
+frame_progress = 0.158722
 
 [node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
 position = Vector2(0, -6)
@@ -108,5 +208,18 @@ shape = SubResource("CapsuleShape2D_kbe41")
 position = Vector2(0, 1.19209e-07)
 scale = Vector2(0.48, 0.52)
 color = Color(0.856695, 0.0447702, 0.156085, 1)
-energy = 2.0
+energy = 0.0
 texture = ExtResource("5_8oiey")
+texture_scale = 1.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r003k")
+}
+
+[node name="Explosion" type="Area2D" parent="." node_paths=PackedStringArray("anim")]
+script = ExtResource("6_0lxr0")
+anim = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("CircleShape2D_38bj7")
