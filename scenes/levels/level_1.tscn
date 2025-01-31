@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cda40656i7rg8"]
+[gd_scene load_steps=22 format=3 uid="uid://cda40656i7rg8"]
 
 [ext_resource type="PackedScene" uid="uid://daef6h111qk1p" path="res://scenes/player/player.tscn" id="1_c4ogy"]
 [ext_resource type="Texture2D" uid="uid://pwuawlesli04" path="res://arts/map.png" id="3_xacif"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://gm866344vvp6" path="res://scenes/zombie/zombie_spawn_info.tres" id="6_neojg"]
 [ext_resource type="PackedScene" uid="uid://dprgsn5gr1s41" path="res://scenes/objects/thrower.tscn" id="6_x6kyi"]
 [ext_resource type="Script" path="res://scenes/ui/time_limit.gd" id="7_j40aq"]
+[ext_resource type="Resource" uid="uid://dvuttowehsgnl" path="res://scenes/zombie/bomber_zombie.tres" id="7_w0gfn"]
 [ext_resource type="Script" path="res://scenes/ui/time.gd" id="11_dikny"]
 [ext_resource type="PackedScene" uid="uid://cfs2qsko2nn06" path="res://scenes/ui/player_soul.tscn" id="12_c6oiq"]
 [ext_resource type="Texture2D" uid="uid://dmx475oghmrsh" path="res://arts/integrity_bg.png" id="13_pn2qq"]
@@ -52,7 +53,7 @@ position_smoothing_speed = 8.0
 [node name="Spawner" parent="." node_paths=PackedStringArray("start_point", "end_point") instance=ExtResource("4_0qqcy")]
 y_sort_enabled = true
 position = Vector2(0, -48)
-spawn_infos = Array[ExtResource("4_361uf")]([ExtResource("5_4o4xl"), ExtResource("6_neojg")])
+spawn_infos = Array[ExtResource("4_361uf")]([ExtResource("5_4o4xl"), ExtResource("6_neojg"), ExtResource("7_w0gfn")])
 start_point = NodePath("Start")
 end_point = NodePath("End")
 

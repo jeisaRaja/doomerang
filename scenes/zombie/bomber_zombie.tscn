@@ -1,0 +1,112 @@
+[gd_scene load_steps=18 format=3 uid="uid://c28e2qn862flh"]
+
+[ext_resource type="Script" path="res://scenes/zombie/bomber_zombie.gd" id="1_dp5w2"]
+[ext_resource type="Shader" uid="uid://b1bw1vubla8ms" path="res://scenes/zombie/zombie.tres" id="1_utnua"]
+[ext_resource type="Texture2D" uid="uid://dm2ml5tecvbab" path="res://arts/bomber_zombie.png" id="2_cp244"]
+[ext_resource type="Script" path="res://scenes/zombie/hurtbox.gd" id="3_3js0u"]
+[ext_resource type="Texture2D" uid="uid://bntkfqhjqb03v" path="res://arts/circle_light_texture.png" id="5_8oiey"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lhgag"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52irq"]
+resource_local_to_scene = true
+shader = ExtResource("1_utnua")
+shader_parameter/Enable = false
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rasb7"]
+atlas = ExtResource("2_cp244")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft8gm"]
+atlas = ExtResource("2_cp244")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pat3"]
+atlas = ExtResource("2_cp244")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eu6t"]
+atlas = ExtResource("2_cp244")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg6b1"]
+atlas = ExtResource("2_cp244")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyhng"]
+atlas = ExtResource("2_cp244")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejt4c"]
+atlas = ExtResource("2_cp244")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4isu"]
+atlas = ExtResource("2_cp244")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1dnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rasb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft8gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pat3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eu6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg6b1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyhng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejt4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4isu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kbe41"]
+height = 26.0
+
+[node name="BomberZombie" type="CharacterBody2D"]
+script = ExtResource("1_dp5w2")
+speed = 15
+damage = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_lhgag")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_52irq")
+sprite_frames = SubResource("SpriteFrames_m1dnb")
+autoplay = "default"
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+position = Vector2(0, -6)
+script = ExtResource("3_3js0u")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_kbe41")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 1.19209e-07)
+scale = Vector2(0.48, 0.52)
+color = Color(0.856695, 0.0447702, 0.156085, 1)
+energy = 2.0
+texture = ExtResource("5_8oiey")
